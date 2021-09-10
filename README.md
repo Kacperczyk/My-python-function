@@ -5,3 +5,5 @@
 3.Function will read columns and user next choose between these column
 
 4.Choosen column and lines from csv file will be read in python
+
+5.Chossen lines could be saved in new csv file
