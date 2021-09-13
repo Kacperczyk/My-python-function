@@ -42,13 +42,16 @@ def dictionary_file_reader_choosen_field(path, first_line, last_line):
     if request == 'yes' or request == 'y':
         new_file_name = input('New csv file name: ')
         with open(os.path.join(path_of_new_file, new_file_name+'.csv'), 'a', newline='', encoding='utf=8')as nf1:
-            nf1_fieldnames = [x for x in user_choice_of_field]
-            nf1_writer = csv.DictWriter(nf1, delimiter=';', fieldnames=nf1_fieldnames)
+            nf1_writer = csv.DictWriter(nf1, delimiter=';', fieldnames=user_choice_of_field)
             reader_linecacher = [linecache.getline(path, x).strip() for x in range(first_line, last_line + 1)]
             reader2 = csv.DictReader(reader_linecacher, delimiter=';', fieldnames=fieldnames)
+            reader3 = {}
+
             for row in reader2:
                 for column_name in user_choice_of_field:
-                    nf1_writer.writerow({column_name: row[column_name]})
-                    print(row[column_name], end=' ')
+                    reader3.update({column_name: row[column_name]})
+                nf1_writer.writerow(reader3)
+                print(reader3)
 
-dictionary_file_reader_choosen_field(r'C:\PyCharm\PythonProject\SeleniumPython\newfile1.csv', 3, 6)
+dictionary_file_reader_choosen_field(r'C:\PyCharm\PythonProject\SeleniumPython\newfile1.csv', 2, 5)
+
