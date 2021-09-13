@@ -45,21 +45,13 @@ def dictionary_file_reader_choosen_field(path, first_line, last_line):
             nf1_writer = csv.DictWriter(nf1, delimiter=';', fieldnames=user_choice_of_field)
             reader_linecacher = [linecache.getline(path, x).strip() for x in range(first_line, last_line + 1)]
             reader2 = csv.DictReader(reader_linecacher, delimiter=';', fieldnames=fieldnames)
-            xxx = [x for x in reader2]
+            reader3 = {}
 
-            for row in xxx:
-                print(row)
+            for row in reader2:
+                for column_name in user_choice_of_field:
+                    reader3.update({column_name: row[column_name]})
+                nf1_writer.writerow(reader3)
+                print(reader3)
 
+dictionary_file_reader_choosen_field(r'C:\PyCharm\PythonProject\SeleniumPython\newfile1.csv', 2, 5)
 
-#dictionary_file_reader_choosen_field(r'C:\PyCharm\PythonProject\SeleniumPython\newfile1.csv', 2, 5)
-
-#mam przerobic ten dictionary na dictionary w zaleznosci od tego ile jest w kluczy do 1 dictionary
-choosen_filed = ['tittle', 'price']
-dict= {'tittle': 'Okazja Alfa Romeo 159 1.9 JTDM 150KM USZKODZONE TURBO', 'price': '6800'}
-dict2 = {}
-
-print(dict[choosen_filed[0]])
-for row in choosen_filed:
-    dict2.update({row: dict[row]})
-
-print(dict2)
